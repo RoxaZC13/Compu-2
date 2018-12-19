@@ -425,7 +425,7 @@ void electrocutar(Terreno *t){
 ///_______________USO HABILIDAD________________
 
 void UsoHabilidad(struct Habilidad *Hab,struct Personaje *PE,char name[],int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC, int *PosHD,int *PosVD){
-        int i,j,x,y,M;
+        int i,j,x,y,N;
         int VerifLetra;
         char letras[21] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','\0'};
         char W;
@@ -437,19 +437,56 @@ void UsoHabilidad(struct Habilidad *Hab,struct Personaje *PE,char name[],int *Po
         char D = 68;
         char ch =176;
         printf("¿Desea usar alguna habilidad?\n");
-        printf("Selecciona la accion que quieres realizar:\n");
+        printf("Selecciona la accion que quiera realizar:\n");
         printf("%s\n",name);
         printf("1)Restaurar\n");
         printf("2)Incendiar\n");
         printf("3)Congelar\n");
         printf("4)Electrocutar\n");
-        scanf("%d",&M);
+        scanf("%d",&N);
+        SeleccionHabilidad(&Hab,&PE,&N);
         
-        printf("Se reduciran sus puntos de accion, en un punto por cada cuadro de distancia.\nSus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
-        printf("Presione un numero para continuar\n");
-        scanf("%d",&x);
-        printf("\n");
+        do{
+            printf("\nIngrese coordenadas:\n");
+            printf("Ingrese Letra: ");
+            W = getche();
+            VerifLetra = 0;
+            for(j=0; j<21; j++){
+                if(W != letras[j]) VerifLetra = 0;
+                else{ VerifLetra = 1;
+                    *PosVA=j;
+                    j=21;
+                }
+            }
+            if(VerifLetra != 1){
+                printf("\nEl primer elemento debe ser una letra entre A y T, intente de nuevo:\n");
+                VerifLetra =0;
+            }
+        }while(VerifLetra == 0);
+
+                do{
+                    printf("\nIngrese Numero: ");
+                    scanf("%d",&Z);
+                    for(i=0; i<10; i++){
+                        if(Z != i) VerifLetra = 0;
+                        else{ VerifLetra = 1;
+                              *PosHA = i;
+                              i=10;
+                        }
+                    }
+                    if(VerifLetra != 1){
+                        printf("\nEl segundo elemento debe ser un numero entre 0 y 9, intente de nuevo:\n");
+                        VerifLetra =0;
+                    }
+                }while(VerifLetra==0);
         
+        
+        
+        
+        
+        
+        
+}
 
 ///__________________MENU____________________
 
@@ -494,6 +531,58 @@ void IniciaTurno(){
 
 }
 
+///___________________SELECCION HABILIDAD_________________________
+
+void SeleccionHabilidad(struct Habilidad *Hab,struct Personaje *PE, int N){
+        int z,j;
+        int
+        char
+        char
+        switch(N){
+                case 1:
+                        printf("Ha decidido usar la habilidad RESTAURAR.\nCura el 30% de los puntos de salud del personaje que se encuentre parado sobre el terreno objetivo.\n\n");
+                        printf("Tiene un costo de 5 puntos de Energía y un rango de 4 puntos de acción.\n");
+                        printf("Sus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
+                        printf("Sus puntos de energia actuales son: %d\n",Personaj[1].PtEnergia);
+                        printf("Presione un numero para continuar\n");
+                        scanf("%d",&z);
+                        printf("\n");
+                        printf("Se reduciran sus puntos de accion y de energia");
+                        break;
+                case 2:
+                        printf("Ha decidido usar la habilidad INCENDIAR.\nIncendia la casilla objetivo y causa 30% de daño a los puntos de salud ACTUALES del personaje parado sobre el terreno objetivo.\n\n");
+                        printf("Tiene un costo de 2 puntos de Energía y un rango de 7 puntos de acción.\n");
+                        printf("Sus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
+                        printf("Sus puntos de energia actuales son: %d\n",Personaj[1].PtEnergia);
+                        printf("Presione un numero para continuar\n");
+                        scanf("%d",&z);
+                        printf("\n");
+                        printf("Se reduciran sus puntos de accion y de energia");
+                        break;
+                case 3:
+                        printf("Ha decidido usar la habilidad CONGELAR.\nCongela la casilla objetivo y reduce a cero los puntos de acción que tenga el personaje parado sobre el terreno objetivo.\n\n");
+                        printf("Tiene un costo de 4 puntos de Energía y un rango de 4 puntos de acción.\n");
+                        printf("Sus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
+                        printf("Sus puntos de energia actuales son: %d\n",Personaj[1].PtEnergia);
+                        printf("Presione un numero para continuar\n");
+                        scanf("%d",&z);
+                        printf("\n");
+                        printf("Se reduciran sus puntos de accion y de energia");
+                        break;
+                case 4:
+                        printf("Ha decidido usar la habilidad ELECTROCUTAR.\nElectrifica la casilla objetivo y elimina el 50% de la cantidad de puntos de energía TOTAL del personaje parado sobre el terreno objetivo.\n\n");
+                        printf("Tiene un costo de 10 puntos de Energía y un rango de 5 puntos de acción.\n");
+                        printf("Sus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
+                        printf("Sus puntos de energia actuales son: %d\n",Personaj[1].PtEnergia);
+                        printf("Presione un numero para continuar\n");
+                        scanf("%d",&z);
+                        printf("\n");
+                        printf("Se reduciran sus puntos de accion y de energia");
+                        break;
+        }
+        return;
+}
+                              
 ///______________________OPERACIONES___________________
 
 void Operaciones(struct Personaje *PE, int M){
