@@ -597,7 +597,8 @@ void Operaciones(struct Personaje *PE, int M){
                 scanf("%d",&x);
                 Menu("\nOpciones");
                 break;
-        case 2: NULL;
+        case 2: UbicacionInicial(&PosHA,&PosVA,&PosHB,&PosVB,&PosHC,&PosVC,&PosHD,&PosVD);
+                consultar(&PE,&PosHA,&PosVA,&PosHB,&PosVB,&PosHC,&PosVC,&PosHD,&PosVD);
                 break;
         case 3: Atacar(&PE);
                 break;
@@ -683,6 +684,132 @@ int PreguntaRango(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *Po
                        int DistanciaDelOb; /*Distancia del jugador al enemigo*/
                        DistanciaDelOb = (abs(PosEnemigoH-*PosHA) + abs(PosEnemigoV-*PosVA));
                        return DistanciaDelOb;
+}
+
+///___________________CONSULTAR____________________________
+
+void consultar(struct Personaje *PE, int *PosHA,int *PosVA, int *PosHB,int *PosVB,  int *PosHC,int *PosVC, int *PosHD,int *PosVD)
+{         //(struct T *TE){ ///int x
+   // struct T *aa= (struct terreno*)malloc(sizeof(struct terreno));
+    //struct terreno personitA;
+    int aux;
+    int i, j,x;
+    int VerifLetra,Verifetra;
+    int Z;
+    char W;
+    int *ub1, *ub2;
+    int inicioHa = *PosHA;
+    int inicioVa = *PosVA;
+    int inicioHb = *PosHB;
+    int inicioVb = *PosVB;
+    int inicioHc = *PosHC;
+    int inicioVc = *PosVC;
+    int inicioHd = *PosHD;
+    int inicioVd = *PosVD;
+
+    char letras[21] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','\0'};
+    char A = 65;
+    char B = 66;
+    char C = 67;
+    char D = 68;
+    char ch =176;
+    printf("Se reducira un punto de accion .\nSus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
+    printf("Presione un numero para continuar\n");
+        scanf("%d",&x);
+        printf("\n");
+
+           do{
+            printf("\Ingrese coordenadas:\n");
+            printf("Ingrese Letra: ");
+            W = getche();
+            VerifLetra = 0;
+            for(j=0; j<21; j++){
+                if(W != letras[j]) VerifLetra = 0;
+                else{ VerifLetra = 1;
+                    ub1=j;
+                    j=21;
+                }
+            }
+            if(VerifLetra != 1){
+                printf("\nEl primer elemento debe ser una letra entre A y T, intente de nuevo:\n");
+                VerifLetra =0;
+            }
+            }while(VerifLetra == 0);
+
+            do{
+                    printf("\nIngrese Numero: ");
+                    scanf("%d",&Z);
+                    for(i=0; i<10; i++){
+                        if(Z != i) {Verifetra = 0;}
+                        else{ Verifetra = 1;
+                              ub2 = i;
+                              i=10;
+                        }
+                    }
+                    if(Verifetra != 1){
+                        printf("\nEl segundo elemento debe ser un numero entre 0 y 9, intente de nuevo:\n");
+                        Verifetra =0;
+                    }
+                }while(Verifetra == 0);
+
+                if(ub1==inicioHa && ub2==inicioVa ) { aux = 1; funcion11(&PE,aux);  printf("%c ",A);}
+                else if(ub1==inicioHb && ub2==inicioHb ) { aux = 2; funcion11(&PE,aux);  printf("%c ",B);}
+                    else if(ub1==*PosHC && ub2==*PosVC ) { aux = 3; funcion11(&PE,aux);  printf("%c ",C);}
+                        else if(ub1==*PosHD && ub2==*PosVD ) {aux = 4; funcion11(&PE,aux);  printf("%c ",D);}
+
+                            else {printf("No hay jugador");}
+
+        printf("\nPresiona un numero para volver al menu");
+        scanf("%d",&x);
+        Menu("\nOpciones");
+
+}
+
+funcion11(struct Personaje *PE, int x){
+    if(x == 1){
+    printf("\nDatos del personaje A: \n");
+            printf(" Nombre : %s \n",Personaje[1].Nombre);
+            printf(" Salud: %d \n",Personaje[1].PtSalud );
+            printf(" Evasion: %d\n",Personaje[1].Evasion );
+            printf(" Dano: %d\n",Personaje[1].Dano );
+            printf(" Rango: %d\n",Personaje[1].Rango );
+            printf(" ARmadura: %d\n",Personaje[1].Armadura );
+            printf(" Evasion: %d\n",Personaje[1].Evasion );
+            printf(" Velocidad: %d\n",Personaje[1].Velocidad );
+            printf(" Accion: %d\n\n",Personaje[1].PtAccion );}
+    if(x == 2){
+    printf("Datos del personaje B: \n");
+            printf("Nombre : %s \n",Personaje[2].Nombre);
+            printf("Salud: %d \n",Personaje[2].PtSalud );
+            printf("Evasion: %d\n",Personaje[2].Evasion );
+            printf("Dano: %d\n",Personaje[2].Dano );
+            printf("Rango: %d\n",Personaje[2].Rango );
+            printf("ARmadura: %d\n",Personaje[2].Armadura );
+            printf("Evasion: %d\n",Personaje[2].Evasion );
+            printf("Velocidad: %d\n",Personaje[2].Velocidad );
+            printf("Accion: %d\n",Personaje[2].PtAccion );}
+    if(x == 3){
+    printf("Datos del personaje C: \n");
+            printf("Nombre : %s \n",Personaje[3].Nombre);
+            printf("Salud: %d \n",Personaje[3].PtSalud );
+            printf("Evasion: %d\n",Personaje[3].Evasion );
+            printf("Dano: %d\n",Personaje[3].Dano );
+            printf("Rango: %d\n",Personaje[3].Rango );
+            printf("ARmadura: %d\n",Personaje[3].Armadura );
+            printf("Evasion: %d\n",Personaje[3].Evasion );
+            printf("Velocidad: %d\n",Personaje[3].Velocidad );
+            printf("Accion: %d\n",Personaje[3].PtAccion );}
+    if(x == 4){
+    printf("Datos del personaje D: \n");
+            printf("Nombre : %s \n",Personaje[4].Nombre);
+            printf("Salud: %d \n",Personaje[4].PtSalud );
+            printf("Evasion: %d\n",Personaje[4].Evasion );
+            printf("Dano: %d\n",Personaje[4].Dano );
+            printf("Rango: %d\n",Personaje[4].Rango );
+            printf("ARmadura: %d\n",Personaje[4].Armadura );
+            printf("Evasion: %d\n",Personaje[4].Evasion );
+            printf("Velocidad: %d\n",Personaje[4].Velocidad );
+            printf("Accion: %d\n",Personaje[4].PtAccion );
 }
 
 ///________________________MAIN____________________________
